@@ -1,16 +1,19 @@
 ---
 page_type: sample
 languages:
-- csharp
+- go
+- javascript
+- html
+- css
 products:
-- dotnet
-description: "Add 150 character max description"
-urlFragment: "update-this-to-unique-url-stub"
+- aks
+description: "Demo application for the 'Creating an AKS application' learn module"
+urlFragment: "deploy-container-app-aks-demo"
 ---
 
 # Official Microsoft Sample
 
-<!-- 
+<!--
 Guidelines on README format: https://review.docs.microsoft.com/help/onboard/admin/samples/concepts/readme-template?branch=master
 
 Guidance on onboarding samples to docs.microsoft.com/samples: https://review.docs.microsoft.com/help/onboard/admin/samples/process/onboarding?branch=master
@@ -18,7 +21,7 @@ Guidance on onboarding samples to docs.microsoft.com/samples: https://review.doc
 Taxonomies for products and languages: https://review.docs.microsoft.com/new-hope/information-architecture/metadata/taxonomies?branch=master
 -->
 
-Give a short description for your sample here. What does it do and why is it important?
+This is the base demonstration for the "Deploying a containerized application in AKS" learn module.
 
 ## Contents
 
@@ -32,22 +35,36 @@ Outline the file contents of the repository. It helps users navigate the codebas
 | `CONTRIBUTING.md` | Guidelines for contributing to the sample. |
 | `README.md`       | This README file.                          |
 | `LICENSE`         | The license for the sample.                |
+| `Dockerfile`      | Docker image file                          |
 
 ## Prerequisites
 
-Outline the required components and tools that a user might need to have on their machine in order to run the sample. This can be anything from frameworks, SDKs, OS versions or IDE releases.
+This sample is built using [Hugo](https://gohugo.io), therefore it is needed as prerequisite to run this example.
 
 ## Setup
 
-Explain how to prepare the sample once the user clones or downloads the repository. The section should outline every step necessary to install dependencies and set up any settings (for example, API keys and output folders).
+After cloning the repository, init the theme repository by running `git submodule update --init src/themes/introduction` **in the root directory**.
 
 ## Running the sample
 
-Outline step-by-step instructions to execute the sample and see its output. Include steps for executing the sample from the IDE, starting specific services in the Azure portal or anything related to the overall launch of the code.
+1. Get into the `src` directory
+2. Run `hugo server -D`
+3. Access the URL given by the Terminal
 
 ## Key concepts
 
-Provide users with more context on the tools and services used in the sample. Explain some of the code that is being used and how services interact with each other.
+Hugo is a static build engine that allows users to create static websites. The idea behind this demo is to show how we can deploy a containerized application to AKS.
+
+There's a [Dockerfile](./Dockerfile) in the root of the repository, this Dockerfile is responsible for generating the image we'll be using to deploy the website. It's a simple NGINX default image, in it we do a few steps:
+
+- Update all the packages
+- Install curl, git and Node.js
+- Download and install Hugo
+- Install PostCSS and autoprefixer using NPM globally as they are requirements for the theme
+- Clone the repository and init all submodules
+- Generate a static web page from the website template
+- Move that directory into NGINX public folder
+- Expose port 80 so we can access it from the cluster
 
 ## Contributing
 
