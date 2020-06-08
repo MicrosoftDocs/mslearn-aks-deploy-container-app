@@ -23,6 +23,25 @@ Taxonomies for products and languages: https://review.docs.microsoft.com/new-hop
 
 This is the base demonstration for the "Deploying a containerized application in AKS" learn module.
 
+## Summary
+
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Official Microsoft Sample](#official-microsoft-sample)
+  - [Summary](#summary)
+  - [Contents](#contents)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+  - [Running the sample](#running-the-sample)
+  - [Running the image](#running-the-image)
+  - [Deploying to Kubernetes](#deploying-to-kubernetes)
+  - [Key concepts](#key-concepts)
+  - [Contributing](#contributing)
+
+<!-- /code_chunk_output -->
+
 ## Contents
 
 Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
@@ -50,6 +69,21 @@ After cloning the repository, init the theme repository by running `git submodul
 1. Get into the `src` directory
 2. Run `hugo server -D`
 3. Access the URL given by the Terminal
+
+## Running the image
+
+Assuming you already have [Docker](https://docs.docker.com/get-docker/) installed, just run `docker build -t image-name .` on the root directory.
+
+To execute it, run: `docker run -p <local-port>:80 image-name`
+
+You can also opt to run it from the remote source using `docker run -p <local-port>:80 khaosdoctor/aks-learn-module-contoso-website`
+
+## Deploying to Kubernetes
+
+Inside the [Kubernetes](./kubernetes) directory, you'll have all necessary resources to deploy the application to an AKS cluster using the [HTTP Application Routing Addon](https://docs.microsoft.com/azure/aks/http-application-routing?WT.mc_id=learndeploycontainerappsaks-learn-ludossan).
+
+1. Update the [Ingress.yaml](./kubernetes/ingress.yaml) file and update your specific DNS zone to the one you have in your AKS cluster, this information can be found in the DNS zone resource inside the resource group of your cluster
+2. Use `Kubectl apply -f <filename>` to all the files in the directory to create the workloads
 
 ## Key concepts
 
