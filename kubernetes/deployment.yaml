@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: contoso-website
+spec:
+  template:
+    metadata:
+      labels:
+        app: contoso-website
+    spec:
+      containers:
+        - image: khaosdoctor/aks-learn-module-contoso-website
+          name: contoso-website
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 80
