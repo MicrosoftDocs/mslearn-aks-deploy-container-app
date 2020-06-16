@@ -11,5 +11,5 @@ spec:
         paths:
           - backend:
               serviceName: contoso-website
-              servicePort: 80
+              servicePort: http
             path: /
