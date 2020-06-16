@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: contoso-website
 spec:
+  selector:
+    matchLabels:
+      app: contoso-website
   template:
     metadata:
       labels:
