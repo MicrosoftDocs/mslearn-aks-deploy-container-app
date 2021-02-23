@@ -76,7 +76,7 @@ Assuming you already have [Docker](https://docs.docker.com/get-docker/) installe
 
 To execute it, run: `docker run -p <local-port>:80 image-name`
 
-You can also opt to run it from the remote source using `docker run -p <local-port>:80 khaosdoctor/aks-learn-module-contoso-website`
+You can also opt to run it from the remote source using `docker run -p <local-port>:80 mcr.microsoft.com/mslearn/samples/contoso-website`
 
 ## Deploying to Kubernetes
 
