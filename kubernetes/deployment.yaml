@@ -12,7 +12,7 @@ spec:
         app: contoso-website
     spec:
       containers:
-        - image: khaosdoctor/aks-learn-module-contoso-website
+        - image: mcr.microsoft.com/mslearn/samples/contoso-website
           name: contoso-website
           resources:
             requests:
